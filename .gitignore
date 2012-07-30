@@ -1,0 +1,13 @@
+*~
+/.installed.cfg
+/.svn/
+/bin/
+/download-cache/
+/eggs/
+/lib/
+/parts/
+/var/
+/.svnignore
+/include/
+/versions-picked.cfg
+/passwords.cfg
