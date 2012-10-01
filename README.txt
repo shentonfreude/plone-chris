@@ -11,6 +11,16 @@ it's reported to be the best supported for this version of Plone::
   /usr/local/python/2.6.5/bin/virtualenv --no-site-packages --distibute .
   source bin/activate
 
+Create Non-tracked Passwords file
+=================================
+
+Create a file `passwords.cfg` that is *not* tracked in the repo, and
+place your plone's admin username and password in it like::
+
+  [passwords]
+  instance_user = admin:MySecretPassword
+
+
 Build
 =====
 
