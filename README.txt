@@ -28,15 +28,24 @@ Bootstrap the buildout::
 
   bin/python bootstrap.py --version=1.6.3
 
+I want bootstrap 1.6.x for speed improvements, but this bootstrap
+keeps installing 1.4.4, and I don't know why.  Install it manually::
 
-Build it verbosely, don't check for packages we already have and increase network timeouts::
+  bin/easy_install zc.buildout==1.6.3
 
-  bin/buildout -v -N -t 5
+But then I get conflicts with buildout-1.4.4 required by mr.developer. Stuck.
+
+[I think the --version may actually work, check venv site-packages ... but does binary do 1.4.4??]
+
+
+Don't use verbose but use -N to avoid checking for already-satisfied versions; ::
+
+  bin/buildout -N -t 5
 
 My buildout.cfg is meant for the common case of development. If you
 want to build for production use::
 
-  bin/buildout -v -N -t 5 -c production.cfg
+  bin/buildout -N -t 5 -c production.cfg
 
 For production, it should ask for your sudo password at the end to fix
 permissions such that a 'plone' user owns various files in var/.
@@ -94,9 +103,3 @@ From there go to the Zope Management Interface, Contrl Panel, Database Managemen
 TO DO
 =====
 
-I want bootstrap 1.6.x for speed improvements, but this bootstrap
-keeps installing 1.4.4, and I don't know why.  Install it manually::
-
-  bin/easy_install zc.buildout==1.6.3
-
-But then I get conflicts with buildout-1.4.4 required by mr.developer. Stuck.
