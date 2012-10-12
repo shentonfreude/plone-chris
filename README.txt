@@ -5,10 +5,10 @@
 Virtualenv
 ==========
 
-Create and activate a virtual environment. I'm using Python-2.6 as
-it's reported to be the best supported for this version of Plone::
+Create and activate a virtual environment. I'm using Python-2.7 as
+it's now officially supported by Plone-4.2::
 
-  /usr/local/python/2.6.5/bin/virtualenv --no-site-packages --distibute .
+  /usr/local/python/2.7.2/bin/virtualenv --no-site-packages --distibute .
   source bin/activate
 
 Create Non-tracked Passwords file
@@ -26,19 +26,33 @@ Build
 
 Bootstrap the buildout::
 
-  bin/python bootstrap.py
+  bin/python bootstrap.py --version=1.6.3
 
-Build it verbosely::
 
-  bin/buildout -v
+Build it verbosely, don't check for packages we already have and increase network timeouts::
 
-It should ask for your sudo password at the end to fix permissions
-such that a 'plone' user owns various files in var/.
+  bin/buildout -v -N -t 5
+
+My buildout.cfg is meant for the common case of development. If you
+want to build for production use::
+
+  bin/buildout -v -N -t 5 -c production.cfg
+
+For production, it should ask for your sudo password at the end to fix
+permissions such that a 'plone' user owns various files in var/.
 
 Test
 ====
 
-Test them out, sudo needed so they can set their user::
+Test them out; for sauna.reload we need to set the environment to tell
+it where to find sources::
+
+  RELOAD_PATH=src/ bin/instance1 fg
+
+
+To try out the production version, you'll need sudo so they can set
+the user, but you won't want sauna reload::
+
 
   sudo bin/zeoserver start
   sudo bin/instance1 fg
@@ -76,3 +90,13 @@ reaching this high up; replace 60001 with your instance's port::
 then connect to http://localhost:60001
 
 From there go to the Zope Management Interface, Contrl Panel, Database Management, main to pack the database.
+
+TO DO
+=====
+
+I want bootstrap 1.6.x for speed improvements, but this bootstrap
+keeps installing 1.4.4, and I don't know why.  Install it manually::
+
+  bin/easy_install zc.buildout==1.6.3
+
+But then I get conflicts with buildout-1.4.4 required by mr.developer. Stuck.
