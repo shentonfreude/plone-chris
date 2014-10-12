@@ -2,21 +2,31 @@
  README: Installing this Plone
 ===============================
 
+Prerequisite Libraries
+======================
+
+Install into your system (pkg, apt-get, whatever):
+
+* libxsl
+* libxml2
+* libjpeg (version?)
+
+
 Virtualenv
 ==========
 
-Create and activate a virtual environment. I'm using Python-2.6 as
-it's reported to be the best supported for this version of Plone::
+Create and activate a virtual environment. I'm using Python-2.7,
+previous build was 2.6):: it's reported to be the best supported for
 
-  /usr/local/python/2.6.5/bin/virtualenv --no-site-packages --distibute .
-  source bin/activate
+  virtualenv-2.7 .venv
+  source .venv/bin/activate
 
 Build
 =====
 
 Bootstrap the buildout::
 
-  bin/python bootstrap.py
+  .venv/bin/python bootstrap.py
 
 Build it verbosely::
 
