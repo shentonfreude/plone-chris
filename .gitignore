@@ -11,3 +11,4 @@
 /include/
 /versions-picked.cfg
 /passwords.cfg
+.venv/
