@@ -21,6 +21,16 @@ previous build was 2.6):: it's reported to be the best supported for
   virtualenv-2.7 .venv
   source .venv/bin/activate
 
+Create Non-tracked Passwords file
+=================================
+
+Create a file `passwords.cfg` that is *not* tracked in the repo, and
+place your plone's admin username and password in it like::
+
+  [passwords]
+  instance_user = admin:MySecretPassword
+
+
 Build
 =====
 
@@ -34,20 +44,29 @@ Build it verbosely::
 
 This can take 30 minutes or so if it has to download a lot of packages.
 
+The default buildout.cfg used above builds a development version; to build a production version that runs as user `plone`, do::
+
+  bin/buildout -v -c production.cfg
+
 It should ask for your sudo password at the end to fix permissions
 such that a 'plone' user owns various files in var/.
 
 Test
 ====
 
-Test them out, sudo needed so they can set their user::
+To test the development version::
+
+  sudo bin/zeoserver start
+  sudo bin/instance1 fg
+
+To test the production build, you need sudo so they can set their user::
 
   sudo bin/zeoserver start
   sudo bin/instance1 fg
 
 You should see it start up, connect to zeostorage, and eventually say::
 
-  2012-08-01 14:35:30 INFO Zope Ready to handle requests
+  2014-10-13 09:11:21 INFO Zope Ready to handle requests
 
 Login as admin to the site on localhost with your instance's port from
 buildout.cfg and see if it tells you that you need to upgrade. Then
