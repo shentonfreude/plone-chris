@@ -15,8 +15,7 @@ Install into your system (pkg, apt-get, whatever):
 Virtualenv
 ==========
 
-Create and activate a virtual environment. I'm using Python-2.7,
-previous build was 2.6):: it's reported to be the best supported for
+Create and activate a virtual environment. I'm using Python-2.7::
 
   virtualenv-2.7 .venv
   source .venv/bin/activate
