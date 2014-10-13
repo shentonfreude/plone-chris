@@ -5,11 +5,17 @@
 Prerequisite Libraries
 ======================
 
-Install into your system (pkg, apt-get, whatever):
+Install prerequisites including libraries and, for production, the `plone` user.
 
-* libxsl
-* libxml2
-* libjpeg (version?)
+
+FreeBSD::
+
+  sudo pkg install libxsl libxml2 libjpeg
+
+Ubuntu::
+
+  sudo apt-get install python-dev libxml2-dev libxslt-dev libjpeg-dev libz-dev
+  sudo adduser plone
 
 
 Virtualenv
@@ -55,8 +61,8 @@ Test
 
 To test the development version::
 
-  sudo bin/zeoserver start
-  sudo bin/instance1 fg
+  bin/zeoserver start
+  bin/instance1 fg
 
 To test the production build, you need sudo so they can set their user::
 
